@@ -1,0 +1,21 @@
+# Environment Variables
+backend/.env
+
+# Dependencies
+backend/node_modules/
+node_modules/
+
+# Logs
+*.log
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary Test Scripts
+backend/test_admin_flow.js
+backend/test_comments.js
+backend/test_duplicate_feedback.js
+backend/test_jwt_auth.js
