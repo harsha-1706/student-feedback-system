@@ -19,3 +19,6 @@ backend/test_admin_flow.js
 backend/test_comments.js
 backend/test_duplicate_feedback.js
 backend/test_jwt_auth.js
+target/
+*.zip
+apache-maven-*

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    
+    <div class="container py-5 d-flex justify-content-center">
+        <div class="w-100" style="max-width: 600px;">
+            <a href="dashboard.html" class="text-decoration-none mb-4 d-inline-block text-muted">
+                &larr; Back to Dashboard
+            </a>
+            
+            <div class="card p-5 border-0">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold mb-2 text-main">Course Feedback</h3>
+                    <p class="text-muted small">Your responses are strictly anonymous and are used to improve teaching quality.</p>
+                </div>
+                
+                <div id="alertMsg" class="alert d-none small"></div>
+
+                <form id="feedbackForm">
+                    <input type="hidden" id="course_id">
+                    <input type="hidden" id="faculty_id">
+
+                    <div class="mb-4">
+                        <label class="form-label fw-medium small">Teaching Quality Rating</label>
+                        <select class="form-select" id="teaching" required>
+                            <option value="" disabled selected>Select a rating (1-5)</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-medium small">Communication Skills Rating</label>
+                        <select class="form-select" id="communication" required>
+                            <option value="" disabled selected>Select a rating (1-5)</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-medium small">Overall Course Rating</label>
+                        <select class="form-select" id="overall" required>
+                            <option value="" disabled selected>Select a rating (1-5)</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very Poor</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-medium small">Additional Comments (Optional)</label>
+                        <textarea class="form-control" id="comments" rows="4" placeholder="What did you like about this course? What could be improved?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2" id="submitBtn">
+                        Submit Anonymous Feedback
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || user.role !== 'student') logout();
+
+        // Get params
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('course_id').value = urlParams.get('course_id');
+        document.getElementById('faculty_id').value = urlParams.get('faculty_id');
+
+        document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const alertMsg = document.getElementById('alertMsg');
+            const btn = document.getElementById('submitBtn');
+            
+            const payload = {
+                course_id: document.getElementById('course_id').value,
+                faculty_id: document.getElementById('faculty_id').value,
+                teaching_rating: document.getElementById('teaching').value,
+                communication_rating: document.getElementById('communication').value,
+                overall_rating: document.getElementById('overall').value,
+                comments: document.getElementById('comments').value,
+            };
+
+            try {
+                btn.classList.add('btn-loading');
+                await apiCall('/feedback/submit', 'POST', payload);
+                alertMsg.className = 'alert alert-success small';
+                alertMsg.innerHTML = '<i class="bi bi-check-circle me-1"></i> Feedback submitted successfully!';
+                alertMsg.classList.remove('d-none');
+                document.getElementById('feedbackForm').reset();
+                setTimeout(() => window.location.href = 'dashboard.html', 1500);
+            } catch (err) {
+                alertMsg.className = 'alert alert-danger small';
+                alertMsg.textContent = err.message;
+                alertMsg.classList.remove('d-none');
+                btn.classList.remove('btn-loading');
+            }
+        });
+    </script>
+</body>
+</html>
