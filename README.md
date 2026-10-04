@@ -749,27 +749,27 @@ Screenshots can be added here to demonstrate the main application interfaces.
 
 ### Login
 
-_Add login screenshot here._
+<img width="1917" height="1078" alt="Screenshot 2026-10-03 233045" src="https://github.com/user-attachments/assets/a1983d96-07d6-4bec-916e-7677b633b1b7" />
 
 ### Admin Dashboard
 
-_Add admin dashboard screenshot here._
+<img width="1917" height="1078" alt="Screenshot 2026-10-03 233936" src="https://github.com/user-attachments/assets/2530d516-f3e7-48b1-abd4-bc921051ed3d" />
 
 ### User Management
 
-_Add user management screenshot here._
+<img width="1917" height="1078" alt="Screenshot 2026-10-03 234010" src="https://github.com/user-attachments/assets/8112ae79-56d1-417d-8523-679dd2675ff8" />
 
 ### Faculty Dashboard
 
-_Add faculty dashboard screenshot here._
+<img width="1917" height="1078" alt="Screenshot 2026-10-04 003256" src="https://github.com/user-attachments/assets/45b41b15-b23c-4518-ad88-e23ab5af3b52" />
 
 ### Student Dashboard
 
-_Add student dashboard screenshot here._
+<img width="1917" height="1076" alt="Screenshot 2026-10-04 001835" src="https://github.com/user-attachments/assets/546a1c73-edcc-4165-b5d1-ad5226ddeae8" />
 
 ### Feedback Form
 
-_Add feedback form screenshot here._
+<img width="1916" height="1078" alt="Screenshot 2026-10-04 000049" src="https://github.com/user-attachments/assets/eca3a13c-1511-4394-b015-5274df609170" />
 
 ---
 
